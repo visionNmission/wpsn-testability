@@ -9,7 +9,8 @@ cache:
   directories:
     - "node_modules"
 env:
-  - DATABASE_HOST=localhost
-  - DATABASE_USER=travis
-  - DATABASE_NAME=subscription
+  global:
+    - DATABASE_HOST=localhost
+    - DATABASE_USER=travis
+    - DATABASE_NAME=subscription
 
