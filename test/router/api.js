@@ -10,6 +10,7 @@ describe('api', function() {
   beforeEach(function() {
     const postMessage = sinon.spy()
     this.app = createApp({postMessage})
+    this.postMessage = postMessage
     return knexCleaner.clean(knex, {'ignoreTables': ['knex_migrations', 'knex_migrations_lock']})
   })
 
@@ -30,6 +31,7 @@ describe('api', function() {
         .then(res => {
           assert.equal(res.status, 200)
           assert.equal(res.body.email, 'test@example.com')
+          assert.equal(this.postMessage.args[0][0], '새 구독: test@example.com')
         })
     })
 
