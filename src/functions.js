@@ -17,8 +17,22 @@ function throwErrorIfNegative(x) {
   return x
 }
 
+function mulSync(x, y) {
+  return x * y
+}
+
+function mulAsync(x, y) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x * y)
+    }, 100)
+  })
+}
+
 module.exports = {
   addSync,
   addAsync,
-  throwErrorIfNegative
+  throwErrorIfNegative,
+  mulSync,
+  mulAsync
 }

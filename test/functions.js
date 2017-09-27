@@ -3,10 +3,36 @@ const assert = require('assert')
 const {
   addAsync,
   addSync,
-  throwErrorIfNegative
+  throwErrorIfNegative,
+  mulSync,
+  mulAsync
 } = require('../src/functions')
 
 describe('functions', function () {
+  describe('mulSync', function() {
+    it('기본 기능', function() {
+      const result = mulSync(2, 3)
+      assert.equal(result, 6)
+    })
+  })
+
+  describe('mulAsync', function() {
+    it('기본 기능 (done)', function(done) {
+      mulAsync(2, 3)
+        .then(result => {
+          assert.equal(result, 6)
+          done()
+        })
+    })
+
+    it('기본 기능 (Promise)', function() {
+      return mulAsync(2, 3)
+        .then(result => {
+          assert.equal(result, 6)
+        })
+    })
+  })
+
   describe('addSync', function() {
     it('기본 기능', function() {
       const result = addSync(1, 2)
